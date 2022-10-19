@@ -19,3 +19,5 @@ bw = data.get("bw")
 
 np.mean(bw)
 np.std(bw)
+plt.plot(bw)
+plt.show()
