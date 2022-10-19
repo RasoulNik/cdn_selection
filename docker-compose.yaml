@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  cache_server:
+    #    image: alfg/nginx-rtmp
+    build: .
+    container_name: cdn_selection
+    hostname: cdn_selection
+    restart: always
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+    ports:
+      - "5002:5000"
+networks:
+  default:
+    external:
+      name: external-example
