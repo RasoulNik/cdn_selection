@@ -1,5 +1,5 @@
 from flask import Flask,request
-
+import random
 app = Flask(__name__)
 counter = 0
 @app.route("/")
@@ -12,7 +12,27 @@ def update_cdn():
         if counter%5 == 0:
             counter = counter + 1
             print(counter)
-            return "slice1,slice2"
+            if random.randint(0,1):
+                msg = "Switch Slice 1 to Slice 2"
+            else:
+                msg = "Switch Slice 2 to Slice 1"
+            return msg
+        else:
+            counter = counter+1
+            print(counter)
+            return "idle"
+@app.route("/update_cdn",methods = ['POST', 'GET'])
+def upgrade_cache():
+    global counter
+    if request.method == 'GET':
+        if counter%5 == 0:
+            counter = counter + 1
+            print(counter)
+            if random.randint(0,1):
+                msg = "Upgrade Cache Slice 1"
+            else:
+                msg = "Upgrade Cache Slice 2"
+            return msg
         else:
             counter = counter+1
             print(counter)
