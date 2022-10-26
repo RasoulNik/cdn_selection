@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  cache_server:
+  cdn_selection:
     #    image: alfg/nginx-rtmp
     build: .
     container_name: cdn_selection
@@ -8,10 +8,23 @@ services:
     restart: always
     volumes:
       - type: bind
-        source: ./app
+        source: .
         target: /app
     ports:
-      - "5002:5000"
+      - "5080:5080"
+  prometheus:
+    image: prom/prometheus
+    #    build: .
+#    network_mode: "host"
+    container_name: prometheus1
+    hostname: prometheus1
+    restart: always
+    volumes:
+      - type: bind
+        source: ./prometheus
+        target: /etc/prometheus
+    ports:
+        - "5090:9090"
 networks:
   default:
     external:

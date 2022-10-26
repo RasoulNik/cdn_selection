@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  cache_server:
+    image: prom/prometheus
+#    build: .
+    network_mode: "host"
+    container_name: prometheus1
+    hostname: prometheus1
+    restart: always
+    volumes:
+      - type: bind
+        source: .
+        target: /etc/prometheus
+#    ports:
+#      - "5080:5080"
+#      - "5090:9090"
+#networks:
+#  default:
+#    external:
+#      name: external-example

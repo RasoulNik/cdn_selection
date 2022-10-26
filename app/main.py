@@ -21,7 +21,7 @@ def update_cdn():
             counter = counter+1
             print(counter)
             return "idle"
-@app.route("/update_cdn",methods = ['POST', 'GET'])
+@app.route("/upgrade_cache",methods = ['POST', 'GET'])
 def upgrade_cache():
     global counter
     if request.method == 'GET':
